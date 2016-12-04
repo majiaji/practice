@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fantasy.practice.service.dao.UserDAO">
+    <resultMap type="UserDO" id="UserDO">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+
+    <select id="list" resultMap="UserDO">
+        select * from user order
+    </select>
+
+    <select id="getById" resultMap="UserDO">
+        select * from user
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="UserDO" useGeneratedKeys="true" keyProperty="id">
+        insert into user (gmt_create, gmt_modified ,name)
+        values (now(),now(),#{name})
+    </insert>
+
+    <update id="update" parameterType="UserDO">
+        update user
+        <set>
+            gmt_modified = now()
+            <if test="name!=null">,name=#{name}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <delete id="delete">
+        delete from user where 1=1
+    </delete>
+</mapper>
