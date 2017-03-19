@@ -25,6 +25,7 @@ public class BloomFilterComponment {
         return bloomFilter.put(content);
     }
 
+
     boolean mightContain(String content) {
         return bloomFilter.mightContain(content);
     }
