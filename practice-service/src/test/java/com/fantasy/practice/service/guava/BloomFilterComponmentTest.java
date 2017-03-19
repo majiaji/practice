@@ -4,7 +4,7 @@ package com.fantasy.practice.service.guava;
 import org.junit.Test;
 
 /**
- * Created by lingyao on 16/12/4.
+ * Created by jiaji on 16/12/4.
  */
 public class BloomFilterComponmentTest {
     @Test
@@ -17,9 +17,11 @@ public class BloomFilterComponmentTest {
         bloomFilterComponment.put("hehe");
 
 
-//        System.out.println(bloomFilterComponment.mightContain("haha"));
-//        System.out.println(bloomFilterComponment.mightContain("hehe"));
-//        System.out.println(bloomFilterComponment.mightContain("haha1"));
+        System.out.println(bloomFilterComponment.mightContain("haha"));
+        System.out.println(bloomFilterComponment.mightContain("hehe"));
+        System.out.println(bloomFilterComponment.mightContain("haha1"));
+
+        String a= "{\"url\":\"https://g.alicdn.com/qn/log/0.1.1/log.min.js\",\"md5\":\"9defee0cc9e80c993b4263b125578b79\"}";
     }
 
 }
