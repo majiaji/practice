@@ -13,5 +13,6 @@ public class RateLimiterComponment {
     @PostConstruct
     void init() {
         rateLimiter = RateLimiter.create(0.1);
+        rateLimiter.acquire();
     }
 }

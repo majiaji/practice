@@ -2,7 +2,6 @@ package com.fantasy.practice.service.guava;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
-import com.google.common.util.concurrent.RateLimiter;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

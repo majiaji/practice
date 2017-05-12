@@ -4,19 +4,20 @@ import com.google.common.collect.Lists;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by jiaji on 16/12/23.
  */
 public class PipeLine {
-    private boolean supportAsync;
-    private CountDownLatch asyncPipeCountDown;
     private List<IPipe> pipeList = Lists.newLinkedList();
 
+    public void setPipeList(List<IPipe> pipeList) {
+        this.pipeList = pipeList;
+    }
+
     @PostConstruct
-    public void init() {
+    private void init() {
         if (pipeList.size() == 0) {
             throw new IllegalArgumentException("pipeline should have one pipe at least!");
         }
@@ -24,7 +25,7 @@ public class PipeLine {
         //找到所有实现Ipipe的类,放到pipeList中
     }
 
-    void execute(PipeInput pipeInput, PipeOutput pipeOutput) {
+    public void execute(PipeInput pipeInput, PipeOutput pipeOutput) {
         PipeIterator pipeIterator = new PipeIterator(this, pipeInput, pipeOutput);
         //触发
         pipeIterator.next();
@@ -55,6 +56,11 @@ public class PipeLine {
                     //执行下一个pipe
                     next();
                 }
+            }
+            if (index == pipeLine.pipeList.size()) {
+                //最后一个pipe，特殊处理
+                pipeInput.stopWatch.stop();
+                System.out.println("end " + pipeInput.stopWatch.getTotalTimeMillis() + "ms");
             }
         }
     }

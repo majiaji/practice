@@ -6,5 +6,5 @@ import org.springframework.util.StopWatch;
  * Created by jiaji on 16/12/23.
  */
 public class PipeInput {
-    StopWatch stopWatch;
+    public StopWatch stopWatch = new StopWatch();
 }
