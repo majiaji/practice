@@ -19,5 +19,4 @@
         <appender-ref ref="PROJECT"/>
     </root>
 
-
 </log4j:configuration>
