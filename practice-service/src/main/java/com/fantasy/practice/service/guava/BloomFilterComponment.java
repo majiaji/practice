@@ -17,7 +17,6 @@ public class BloomFilterComponment {
     @PostConstruct
     void init() {
         bloomFilter = BloomFilter.create(Funnels.stringFunnel(Charset.forName("utf-8")), 10, 0.03);
-
     }
 
     boolean put(String content) {

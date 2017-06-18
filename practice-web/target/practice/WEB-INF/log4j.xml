@@ -14,15 +14,9 @@
         </layout>
     </appender>
 
-    <!-- jmonitor appender -->
-    <!--<appender name="JmonitorAppender" class="com.alibaba.alimonitor.jmonitor.plugin.log4j.JMonitorLog4jAppender">-->
-    <!--</appender>-->
-
-
     <root>
         <level value="info"/>
         <appender-ref ref="PROJECT"/>
-        <!--<appender-ref ref="JmonitorAppender"/>-->
     </root>
 
 

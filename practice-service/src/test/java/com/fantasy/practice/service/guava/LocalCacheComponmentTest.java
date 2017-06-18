@@ -23,13 +23,8 @@ public class LocalCacheComponmentTest {
                 .build(new CacheLoader<String, String>() {
                     @Override
                     public String load(String key) throws Exception {
-                        System.out.println("thread come in and reload");
-                        Thread.sleep(1000L);
-//                        if (num == 2) {
-//                            return null;
-//                        } else {
-                            return String.valueOf(num++);
-//                        }
+                        //load from db
+                        return "result";
                     }
                 });
 
