@@ -5,7 +5,7 @@
     <!--  appender definitions                                                 -->
     <!-- ===================================================================== -->
     <appender name="PROJECT" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="file" value="practice/logs/practice.log"/>
+        <param name="file" value="/Users/jiaji/logs/practice.log"/>
         <param name="append" value="true"/>
         <param name="encoding" value="utf-8"/>
         <param name="threshold" value="info"/>

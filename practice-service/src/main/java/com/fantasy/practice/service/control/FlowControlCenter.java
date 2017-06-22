@@ -15,19 +15,24 @@ import javax.annotation.Resource;
 public class FlowControlCenter {
     private static final Logger logger = LoggerFactory.getLogger(FlowControlCenter.class);
 
+    private static final Long TOP = 10000L;
+
     @Resource
     private RedisCenter redisCenter;
 
-    public boolean tryAcquire(String apiName) {
+    public Boolean tryAcquire(String apiName) {
         Jedis jedis = redisCenter.getInstance();
-        if (jedis == null) return false;
+        if (jedis == null || (jedis.get(apiName) != null && Long.valueOf(jedis.get(apiName)) > TOP)) {
+            return false;
+        }
         Long count = jedis.incr(apiName);
         //init
         if (count == 1) {
-            logger.error("apiName:{}第一次调用，设置过期时间2min", apiName);
-            jedis.expireAt(apiName, System.currentTimeMillis() + 120 * 1000);
+            logger.error("apiName:{}第一次尝试，设置过期时间20s", apiName);
+            jedis.expireAt(apiName, System.currentTimeMillis() / 1000 + 20);
         }
-        logger.error("apiName:{}第{}次调用", apiName, count);
-        return count <= 1000;
+        logger.error("apiName:{}第{}次尝试", apiName, count);
+        jedis.close();
+        return count <= TOP;
     }
 }

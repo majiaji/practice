@@ -1,5 +1,7 @@
 package com.fantasy.practice.service.redis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -14,11 +16,12 @@ import javax.annotation.PreDestroy;
  */
 @Service
 public class RedisCenter {
+    private static final Logger logger = LoggerFactory.getLogger(RedisCenter.class);
+
     private JedisPool pool;
 
     @PostConstruct
     void init() {
-        String DEFAULT_PASSWORD = "taobao1234";
         JedisPoolConfig config = new JedisPoolConfig();
         //最大资源数(并发数)
         config.setMaxTotal(1024);
@@ -37,11 +40,12 @@ public class RedisCenter {
         try {
             jedis = pool.getResource();
         } catch (Exception e) {
-
+            logger.error(e.getMessage(), e);
             return null;
         }
         return jedis;
     }
+
 
     @PreDestroy
     void destory() {
