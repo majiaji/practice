@@ -182,12 +182,12 @@
                 <artifactId>jcl-over-slf4j</artifactId>
                 <version>1.7.2</version>
             </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>99.0-does-not-exist</version>
-                <scope>provided</scope>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>commons-logging</groupId>-->
+            <!--<artifactId>commons-logging</artifactId>-->
+            <!--<version>99.0-does-not-exist</version>-->
+            <!--<scope>provided</scope>-->
+            <!--</dependency>-->
             <!-- slf4j的实现：代替logback，解决日志打在jboss里的问题！ -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -218,6 +218,15 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>4.5.3</version>
+            </dependency>
+
+            <!--jedis-->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.9.0</version>
+                <type>jar</type>
+                <scope>compile</scope>
             </dependency>
 
         </dependencies>

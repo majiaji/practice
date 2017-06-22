@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
 /**
  * Created by jiaji on 2017/5/4.
  */
@@ -11,8 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SpringParamController {
     @RequestMapping("/testParam")
     @ResponseBody
-    public void testParamConvert(Integer num, Boolean bool) {
-        System.out.println(num);
-        System.out.println(bool);
+    public Map testParamConvert(HttpServletRequest request) {
+        return request.getParameterMap();
     }
 }

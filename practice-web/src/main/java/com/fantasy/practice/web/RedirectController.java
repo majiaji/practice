@@ -8,7 +8,6 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * Created by jiaji on 2017/5/31.
@@ -19,12 +18,9 @@ public class RedirectController {
     @ResponseBody
     String test(HttpServletRequest request, HttpServletResponse response) {
         if (WebUtils.getCookie(request, "coo") == null) {
-            response.addCookie(new Cookie("coo", "haha"));
-            try {
-                response.sendRedirect("/request/test");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Cookie cookie = new Cookie("COO", "haha");
+            cookie.setMaxAge(7200);
+            response.addCookie(cookie);
         } else {
             return WebUtils.getCookie(request, "coo").getDomain();
         }

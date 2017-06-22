@@ -1,5 +1,7 @@
 package com.fantasy.practice.service;
 
+import com.fantasy.practice.service.util.HttpCallService;
+import com.google.common.collect.Maps;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -11,6 +13,7 @@ import org.springframework.util.DigestUtils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Map;
 
 /**
  * Created by jiaji on 2017/3/27.
@@ -47,7 +50,9 @@ public class threadLocalTest {
 
 
     @Test
-    public void test3(){
+    public void test3() {
         System.out.println(System.getProperty("user.home"));
     }
+
+
 }
