@@ -66,6 +66,11 @@
             <artifactId>practice-service</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>practice-jstorm</artifactId>
+        </dependency>
+
         <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>

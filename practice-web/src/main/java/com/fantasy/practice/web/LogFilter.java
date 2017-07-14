@@ -8,11 +8,11 @@ import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * Created by jiaji on 2017/6/21.
+ * Created by jiaji on 2017/6/30.
  */
-public class TestFilter implements Filter {
+public class LogFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(TestFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -21,10 +21,9 @@ public class TestFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.error("test filter befroe do");
-        Boolean haha = null;
-        logger.error("haha:{}", haha);
         filterChain.doFilter(servletRequest, servletResponse);
+
+        logger.error("log filter after do");
     }
 
     @Override

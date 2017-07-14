@@ -23,23 +23,24 @@ public class LocalCacheComponmentTest {
                 .build(new CacheLoader<String, String>() {
                     @Override
                     public String load(String key) throws Exception {
-                        //load from db
-                        return "result";
+                        String time = String.valueOf(System.currentTimeMillis());
+                        System.out.println(Thread.currentThread().getName() + "load db!! and get " + time);
+                        return time;
                     }
                 });
 
-        ExecutorService threadPoolExecutor = Executors.newFixedThreadPool(3);
+        ExecutorService threadPoolExecutor = Executors.newFixedThreadPool(5);
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             threadPoolExecutor.execute(() -> {
                 while (true) {
                     try {
-                        System.out.println("now num is : " + cache.get("hehe"));
+                        System.out.println(Thread.currentThread().getName() + "  " + cache.get("hehe"));
                     } catch (ExecutionException e) {
                         System.out.println("药丸");
                     }
                     try {
-                        Thread.sleep(1000L);
+                        Thread.sleep(50L);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

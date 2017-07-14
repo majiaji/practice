@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by jiaji on 2017/6/18.
@@ -33,14 +36,16 @@ public class FlowTestController {
         Date now = new Date();
         Boolean running = true;
         while (running) {
-            Future<Boolean> future = pool.submit(new Callable<Boolean>() {
-                @Override
-                public Boolean call() throws Exception {
-                    logger.error("线程" + Thread.currentThread().getName() + "执行中..");
-                    return flowControlCenter.tryAcquire(apiName);
-                }
+            Future<Boolean> future = pool.submit(() -> {
+                logger.error("线程" + Thread.currentThread().getName() + "执行中..");
+                return flowControlCenter.tryAcquire(apiName);
             });
             running = future.get();
+            if (running.equals(false)) {
+                logger.error("流控生效ing ");
+                Thread.sleep(2000L);
+                running = true;
+            }
         }
         return System.currentTimeMillis() - now.getTime();
     }
