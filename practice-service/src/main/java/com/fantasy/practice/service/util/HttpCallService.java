@@ -14,6 +14,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.Map;
 /**
  * Created by jiaji on 2017/6/20.
  */
+@Service
 public class HttpCallService {
 
     private HttpClient httpClient;
